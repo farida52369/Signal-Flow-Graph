@@ -29,23 +29,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="addEdge" layoutX="731.0" layoutY="29.0" mnemonicParsing="false" onAction="#addEdge_" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #C0C0C0;" text="Add Edge" textFill="#000000ed">
-         <font>
-            <Font size="17.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </Button>
       <Button fx:id="solve" layoutX="944.0" layoutY="29.0" mnemonicParsing="false" onAction="#solve_" prefHeight="33.0" prefWidth="85.0" style="-fx-background-color: #87CEEB;" text="Solve" textFill="#000000ed">
-         <font>
-            <Font size="17.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="OPEN_HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="addNode" layoutX="366.0" layoutY="29.0" mnemonicParsing="false" onAction="#addNode_" prefHeight="32.0" prefWidth="111.0" style="-fx-background-color: #C0C0C0;" text="Add Node" textFill="#000000ed">
          <font>
             <Font size="17.0" />
          </font>
@@ -60,6 +44,16 @@
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
+      </Button>
+      <Button fx:id="addNode" layoutX="364.0" layoutY="29.0" mnemonicParsing="false" onAction="#addNode_" prefHeight="33.0" prefWidth="118.0" text="Add Node">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="addEdge" layoutX="733.0" layoutY="29.0" mnemonicParsing="false" onAction="#addEdge_" prefHeight="33.0" prefWidth="118.0" text="Add Edge">
+         <font>
+            <Font size="17.0" />
+         </font>
       </Button>
    </AnchorPane>
    <AnchorPane fx:id="drawSpace" layoutX="-1.0" prefHeight="614.0" prefWidth="1250.0" />

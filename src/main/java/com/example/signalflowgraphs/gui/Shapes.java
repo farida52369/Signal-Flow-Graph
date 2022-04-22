@@ -1,6 +1,7 @@
 package com.example.signalflowgraphs.gui;
 
 import com.example.signalflowgraphs.HelloApplication;
+import com.example.signalflowgraphs.HelloController;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
@@ -118,6 +119,7 @@ public class Shapes {
                 } else {
                     int nodeI = circles.indexOf(circle_1);
                     int nodeII = circles.indexOf(curCircle);
+                    gain = HelloController.gainVal;
                     if (nodeI == nodeII) {
                         if (!(nodeI == 0 || nodeI == circles.size() - 1)) {
                             spBranches.add(new SpecialBranch(drawSpace, circle_1, gain));
@@ -155,9 +157,7 @@ public class Shapes {
         this.cur_distance = width / (numOfNodes * 1.0);
     }
 
-    public void addEdge(double gain) {
-        this.gain = gain;
-
+    public void addEdge() {
         // variables drawing edges
         timeForEdges = true;
         noMoreNodes = true;

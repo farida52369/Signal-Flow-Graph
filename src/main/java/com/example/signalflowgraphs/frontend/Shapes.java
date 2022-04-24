@@ -1,7 +1,8 @@
-package com.example.signalflowgraphs.gui;
+package com.example.signalflowgraphs.frontend;
 
-import com.example.signalflowgraphs.HelloApplication;
 import com.example.signalflowgraphs.HelloController;
+import com.example.signalflowgraphs.backend.Graph;
+import com.example.signalflowgraphs.backend.Mason;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
@@ -13,14 +14,12 @@ import javafx.scene.text.Text;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 public class Shapes {
 
-    private List<Circle> circles;
-    private List<Text> circlesText;
-    private List<Branch> branches;
-    private List<SpecialBranch> spBranches;
+    private final List<Circle> circles;
+    private final List<Text> circlesText;
+    private final Graph graph;
     private static final int width = 1250;
     private static final int height = 614;
     private int numOfNodes;
@@ -32,19 +31,18 @@ public class Shapes {
     private boolean noMoreNodes;
     private Circle circle_1;
     private boolean firstClick;
-    private AudioClip error_alert;
-    private AudioClip pass_alert;
+    public final AudioClip error_alert;
+    private final AudioClip pass_alert;
 
     public Shapes(AnchorPane drawSpace) {
         // Global Variables
         this.circles = new LinkedList<>();
         this.circlesText = new LinkedList<>();
-        this.branches = new LinkedList<>();
-        this.spBranches = new LinkedList<>();
+        this.graph = new Graph();
 
         this.drawSpace = drawSpace;
         this.numOfNodes = 0;
-        this.gain = 3;
+        this.gain = HelloController.gainVal;
         this.timeForEdges = false;
         this.noMoreNodes = false;
         this.firstClick = true;
@@ -104,6 +102,9 @@ public class Shapes {
 
             // add Text for added Node
             addText(curCircle, index);
+
+            // Send To BackEnd
+            graph.addNewNode(index);
         }
     }
 
@@ -122,15 +123,21 @@ public class Shapes {
                     gain = HelloController.gainVal;
                     if (nodeI == nodeII) {
                         if (!(nodeI == 0 || nodeI == circles.size() - 1)) {
-                            spBranches.add(new SpecialBranch(drawSpace, circle_1, gain));
-                            pass_alert.play();
+                            // Send To backEnd
+                            if (graph.addNewBranch(nodeI, nodeII, gain)) {
+                                new SpecialBranch(drawSpace, circle_1, gain);
+                                pass_alert.play();
+                            } else error_alert.play();
                         } else error_alert.play();
                     } else {
-                        if (!(nodeI == circles.size() - 1)) {
-                            branches.add(new Branch(drawSpace, circle_1, curCircle, gain));
-                            pass_alert.play();
+                        if (!(nodeI == circles.size() - 1) && nodeII != 0) {
+                            if (graph.addNewBranch(nodeI, nodeII, gain)) {
+                                new Branch(drawSpace, circle_1, curCircle, gain);
+                                pass_alert.play();
+                            } else error_alert.play();
                         } else error_alert.play();
                     }
+
                     firstClick = true;
                     // timeForEdges = false;
                 }
@@ -153,7 +160,7 @@ public class Shapes {
     }
 
     private void setCalculation() {
-        this.cur_radius = 200 / (numOfNodes * 1.0);
+        this.cur_radius = 250 / (numOfNodes * 1.0);
         this.cur_distance = width / (numOfNodes * 1.0);
     }
 
@@ -161,5 +168,10 @@ public class Shapes {
         // variables drawing edges
         timeForEdges = true;
         noMoreNodes = true;
+    }
+
+    public Mason solve() {
+        //
+        return new Mason(graph);
     }
 }

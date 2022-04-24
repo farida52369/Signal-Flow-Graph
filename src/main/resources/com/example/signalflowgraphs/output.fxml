@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signalflowgraphs.Output">
+   <children>
+      <TextArea fx:id="FP" editable="false" layoutX="7.0" layoutY="56.0" prefHeight="568.0" prefWidth="233.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <TextArea fx:id="FBL" editable="false" layoutX="380.0" layoutY="56.0" prefHeight="568.0" prefWidth="262.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <TextArea fx:id="gainFP" editable="false" layoutX="245.0" layoutY="56.0" prefHeight="568.0" prefWidth="129.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <TextArea fx:id="gainFBL" editable="false" layoutX="648.0" layoutY="56.0" prefHeight="568.0" prefWidth="152.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <TextArea fx:id="NTL" editable="false" layoutX="806.0" layoutY="56.0" prefHeight="568.0" prefWidth="290.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <TextArea fx:id="gainNTL" editable="false" layoutX="1100.0" layoutY="56.0" prefHeight="568.0" prefWidth="143.0">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <Label layoutX="7.0" layoutY="9.0" prefHeight="43.0" prefWidth="189.0" text="Forward paths">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="250.0" layoutY="16.0" prefHeight="29.0" prefWidth="60.0" text="Gain">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="657.0" layoutY="16.0" prefHeight="29.0" prefWidth="60.0" text="Gain">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="1104.0" layoutY="16.0" prefHeight="29.0" prefWidth="60.0" text="Gain">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="18.0" text="Feedback Loops">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="806.0" layoutY="18.0" text="Non-Touching Loops">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="648.0" text="Overall Value:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="overAllValue" layoutX="196.0" layoutY="634.0" prefHeight="53.0" prefWidth="1015.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

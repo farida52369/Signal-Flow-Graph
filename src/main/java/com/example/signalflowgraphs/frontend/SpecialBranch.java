@@ -1,4 +1,4 @@
-package com.example.signalflowgraphs.gui;
+package com.example.signalflowgraphs.frontend;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;

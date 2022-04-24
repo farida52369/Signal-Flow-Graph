@@ -1,12 +1,19 @@
 package com.example.signalflowgraphs;
 
-import com.example.signalflowgraphs.gui.Shapes;
-import javafx.event.ActionEvent;
+import com.example.signalflowgraphs.backend.Mason;
+import com.example.signalflowgraphs.frontend.Shapes;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,18 +28,6 @@ public class HelloController implements Initializable {
     @FXML
     private TextField gain;
 
-    @FXML
-    private Button addNode;
-
-    @FXML
-    private Button addEdge;
-
-    @FXML
-    private Button solve;
-
-    @FXML
-    private Button clear;
-
     private Shapes shapes;
     private boolean firstAddEdge;
     public static double gainVal;
@@ -46,7 +41,7 @@ public class HelloController implements Initializable {
         firstAddEdge = true;
 
         gain.textProperty().addListener((observableValue, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*(\\.\\d*)?")) {
+            if (!newValue.matches("-?\\d*(\\.\\d*)?")) {
                 gain.setText(oldValue);
             }
             try {
@@ -55,16 +50,15 @@ public class HelloController implements Initializable {
                 // Oooops
             }
         });
-
     }
 
-    public void addEdge_(ActionEvent event) {
+    public void addEdge_() {
         // gain
         gainVal = Double.parseDouble(gain.getText());
-
         if (firstAddEdge) {
+            shapes.error_alert.play();
             Alert warning = new Alert(Alert.AlertType.CONFIRMATION);
-            warning.setTitle("Oooops, Warning!");
+            warning.setTitle("Oooooops, Warning!");
             warning.setHeaderText(null);
             warning.setGraphic(null);
             warning.setContentText("If You pushed OK, You can't add any nodes unless pushing (Clear)");
@@ -84,11 +78,34 @@ public class HelloController implements Initializable {
         shapes.addEdge();
     }
 
-    public void solve_(ActionEvent event) {
+    public void solve_() {
+        // Output
+        try {
+            // For root
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("output.fxml"));
+            Scene scene = new Scene(loader.load(), 1250, 700);
+            Stage stage = new Stage();
+            stage.setTitle("Output of Signal Flow Graphs");
+
+            //
+            Mason mason = shapes.solve();
+            Output output = loader.getController();
+
+            output.displayOutput(mason.getFP(), mason.getGainFP(),
+                    mason.getFBL(), mason.getGainFBL(),
+                    mason.getNTL(), mason.getGainNTL(), mason.output()
+            );
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void addNode_(ActionEvent event) {
+    public void addNode_() {
         shapes.addNode();
 
         // update text_area for number of nodes
@@ -96,7 +113,7 @@ public class HelloController implements Initializable {
         numberOfNodes.setText((oldVal + 1) + "");
     }
 
-    public void clear_(ActionEvent event) {
+    public void clear_() {
         drawSpace.getChildren().clear();
 
         // when clear set all

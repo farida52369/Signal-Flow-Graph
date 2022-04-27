@@ -93,7 +93,8 @@ public class HelloController implements Initializable {
 
             output.displayOutput(mason.getFP(), mason.getGainFP(),
                     mason.getFBL(), mason.getGainFBL(),
-                    mason.getNTL(), mason.getGainNTL(), mason.output()
+                    mason.getNTL(), mason.getGainNTL(),
+                    mason.getValues(), mason.output()
             );
 
             stage.setScene(scene);

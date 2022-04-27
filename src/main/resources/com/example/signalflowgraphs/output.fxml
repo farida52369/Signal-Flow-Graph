@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signalflowgraphs.Output">
    <children>
-      <TextArea fx:id="FP" editable="false" layoutX="7.0" layoutY="56.0" prefHeight="568.0" prefWidth="233.0">
+      <TextArea fx:id="FP" editable="false" layoutX="7.0" layoutY="56.0" prefHeight="276.0" prefWidth="233.0">
          <font>
             <Font size="18.0" />
          </font></TextArea>
@@ -15,7 +15,7 @@
          <font>
             <Font size="18.0" />
          </font></TextArea>
-      <TextArea fx:id="gainFP" editable="false" layoutX="245.0" layoutY="56.0" prefHeight="568.0" prefWidth="129.0">
+      <TextArea fx:id="gainFP" editable="false" layoutX="245.0" layoutY="56.0" prefHeight="276.0" prefWidth="129.0">
          <font>
             <Font size="18.0" />
          </font></TextArea>
@@ -69,6 +69,16 @@
       <Label fx:id="overAllValue" layoutX="196.0" layoutY="634.0" prefHeight="53.0" prefWidth="1015.0">
          <font>
             <Font size="24.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="values" editable="false" layoutX="7.0" layoutY="392.0" prefHeight="232.0" prefWidth="365.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="14.0" layoutY="356.0" text="Values of Δ">
+         <font>
+            <Font size="23.0" />
          </font>
       </Label>
    </children>

@@ -25,12 +25,15 @@ public class Output {
     private TextArea gainNTL;
 
     @FXML
+    private TextArea values;
+
+    @FXML
     private Label overAllValue;
 
     public void displayOutput(String FP_, String gainFP_,
                               String FBL_, String gainFBL_,
                               String NTL_, String gainNTL_,
-                              String overAllValue_) {
+                              String values_, String overAllValue_) {
         FP.setText(FP_);
         gainFP.setText(gainFP_);
 
@@ -40,6 +43,7 @@ public class Output {
         NTL.setText(NTL_);
         gainNTL.setText(gainNTL_);
 
+        values.setText(values_);
         overAllValue.setText(overAllValue_);
 
     }

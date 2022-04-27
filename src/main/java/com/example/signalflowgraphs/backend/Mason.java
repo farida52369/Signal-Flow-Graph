@@ -231,34 +231,25 @@ public class Mason {
             deltaForForwardPath[i] -= val;
 
             // Feed Back Loops  __ Non-Touching Loops
-            for (List<Path> nonTouchingLoop : nonTouchingLoops) {
-
+            for (int j = 0; j < nonTouchingLoops.size(); j++) {
                 val = 0;
                 // String hereString = null;
-                for (Path path : nonTouchingLoop) {
+                for (Path path : nonTouchingLoops.get(j)) {
                     List<Integer> temp = new LinkedList<>();
                     temp.addAll(forwardPaths.get(i).paths);
                     temp.addAll(path.paths);
 
                     if (isNonTouchingLoop(temp)) {
-                        // hereString = "+(" + nonTouchingLoops.get(j).get(k).cost + ")";
                         val += path.cost;
                     }
                 }
-                /*
-                 *
-                 if (hereString != null) {
-                    if (j % 2 == 0) {
-                        s.append(" + [").append(hereString).append("]");
-                        deltaForForwardPath[i] += val;
-                    } else {
-                        s.append(" - [").append(hereString).append("]");
-                        deltaForForwardPath[i] -= val;
-                    }
+
+                if (j % 2 == 0) {
+                    deltaForForwardPath[i] += val;
+                } else {
+                    deltaForForwardPath[i] -= val;
                 }
-                */
             }
-            // stringsForForwardPath[i] = s.toString();
         }
     }
 
@@ -341,5 +332,16 @@ public class Mason {
         finalVal /= deltaVal;
         output.append(String.format("%.4f", finalVal));
         return output.toString();
+    }
+
+    public String getValues() {
+        StringBuilder s = new StringBuilder();
+        s.append("\u0394 \u2192 ").append(deltaVal).append("\n");
+
+        s.append("\nFor Forward Paths:\n");
+        for (int i = 0; i < deltaForForwardPath.length; i++) {
+            s.append("\u0394").append(i + 1).append(" \u2192 ").append(deltaForForwardPath[i]).append("\n");
+        }
+        return s.toString();
     }
 }
